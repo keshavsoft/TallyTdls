@@ -1,0 +1,8 @@
+[Collection: KeshavLedgers]
+Type    : Ledger
+Fetch   : Name, Parent
+
+Compute : GSTRegistrationType : $GSTRegistrationType
+Compute : PartyGSTIN          : $PartyGSTIN
+
+Format  : JSON
