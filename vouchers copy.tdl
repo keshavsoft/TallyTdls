@@ -1,0 +1,14 @@
+[Collection: KeshavInventoryEntries]
+Type : Voucher
+
+Walk : Inventory Entries
+
+By : TestField : "Keshav"
+By : VoucherNo   : $VoucherNumber
+By : VoucherDate : $Date
+By : Supplier    : $PartyLedgerName
+By : StockItem   : $StockItemName
+By : BatchName   : $BatchName
+By : Qty         : $ActualQty
+
+Format : JSON

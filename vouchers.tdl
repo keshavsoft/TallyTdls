@@ -1,0 +1,6 @@
+[Collection: KeshavInventoryEntries]
+Type : Voucher
+
+Fetch : AllInventoryEntries.*
+
+Format : JSON

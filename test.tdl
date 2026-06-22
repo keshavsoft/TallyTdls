@@ -1,0 +1,47 @@
+;; 1. Menu Modification
+[Menu: Gateway of Tally]
+Item: "Export Batch Vouchers" : Display: EXPT BATCH REPORT
+
+;; 2. The Custom Report
+[Report: EXPT BATCH REPORT]
+Form: EXPT BATCH FORM
+Title: "Inventory Vouchers with Batch Details"
+Variable: SVFromDate, SVToDate
+Set: SVFromDate : $$MonthStart:##CurrentDate
+Set: SVToDate : ##CurrentDate
+
+[Form: EXPT BATCH FORM]
+Part: EXPT BATCH PART
+Button: EXPT BATCH BUTTON
+Height: 100%
+Width: 100%
+
+[Part: EXPT BATCH PART]
+Line: EXPT TITLE, EXPT BATCH LINE
+Repeat: EXPT BATCH LINE : VCH BATCH COLL
+Scroll: Both
+Border: ThinBox
+
+[Line: EXPT TITLE]
+Field: Short Prompt: "Date", Short Prompt: "Voucher Type", Short Prompt: "Voucher Number", Short Prompt: "Party", Short Prompt: "Item Name", Short Prompt: "Batch Number", Short Prompt: "Quantity"
+
+[Line: EXPT BATCH LINE]
+Field: SV Date, Short Name, Medium Prompt, Short Name, Short Name, Short Name, Quantity
+
+;; 3. Collection fetching Vouchers and Sub-allocations
+[Collection: VCH BATCH COLL]
+Type: Voucher : InventoryVch
+BelongsTo: Yes
+Walk: InventoryEntries, BatchAllocations
+Fetch: Date, VoucherTypeName, VoucherNumber, PartyName, StockItemName, BatchName, BilledQty
+
+;; 4. Export to CSV Button
+[Button: EXPT BATCH BUTTON]
+Key: Alt + E
+Title: "Export CSV"
+Action: Call: EXPORT BATCH ACTION
+
+[Function: EXPORT BATCH ACTION]
+Variable: FileName: String
+Set: FileName: "C:\Tally_Batch_Export.csv"
+Export: ASCII : ##FileName : EXPT BATCH REPORT
