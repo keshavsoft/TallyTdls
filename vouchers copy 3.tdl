@@ -1,0 +1,8 @@
+[Collection: KeshavInventoryEntries]
+Type : Voucher
+
+Fetch : AllInventoryEntries.StockItemName, \
+        AllInventoryEntries.BilledQty, \
+        AllInventoryEntries.Rate
+
+Format : JSON

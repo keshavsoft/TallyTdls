@@ -1,0 +1,49 @@
+[Report: KeshavVoucherReport]
+Form : KeshavVoucherForm
+
+[Form: KeshavVoucherForm]
+Part : KeshavVoucherPart
+
+[Part: KeshavVoucherPart]
+Line : KeshavVoucherLine
+Repeat : KeshavVoucherLine : KeshavVoucherCollection
+Scroll : Vertical
+
+[Line: KeshavVoucherLine]
+Fields : KSDate, KSVoucherNo, KSGuid, KSItems, KSQtys, KSRates, KSAmounts
+
+[Field: KSDate]
+Set As : $Date
+XMLTag : "Date"
+
+[Field: KSVoucherNo]
+Set As : $VoucherNumber
+XMLTag : "VoucherNumber"
+
+[Field: KSGuid]
+Set As : $Guid
+XMLTag : "Guid"
+
+[Field: KSItems]
+Set As : $InvItems
+XMLTag : "Items"
+
+[Field: KSQtys]
+Set As : $InvQtys
+XMLTag : "Qtys"
+
+[Field: KSRates]
+Set As : $InvRates
+XMLTag : "Rates"
+
+[Field: KSAmounts]
+Set As : $InvAmounts
+XMLTag : "Amounts"
+
+[Collection: KeshavVoucherCollection]
+Type : Voucher
+
+Method : InvItems   : $$FullListEx:"^":AllInventoryEntries:$StockItemName
+Method : InvQtys    : $$FullListEx:"^":AllInventoryEntries:$ActualQty
+Method : InvRates   : $$FullListEx:"^":AllInventoryEntries:$Rate
+Method : InvAmounts : $$FullListEx:"^":AllInventoryEntries:$Amount

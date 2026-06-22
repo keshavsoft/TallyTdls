@@ -1,6 +1,70 @@
 [Collection: KeshavInventoryEntries]
 Type : Voucher
-
-Fetch : AllInventoryEntries.*
-
+Fetch : AllInventoryEntries
 Format : JSON
+
+
+
+[Report: KeshavInventoryReport]
+Form : KeshavInventoryForm
+
+[Form: KeshavInventoryForm]
+Part : KeshavInventoryPart
+
+[Part: KeshavInventoryPart]
+Line : KeshavInventoryLine
+Repeat : KeshavInventoryLine : KeshavInventoryCollection
+Scroll : Vertical
+
+[Line: KeshavInventoryLine]
+Fields : KSItem, KSQty, KSBilledQty, KSRate, KSAmount
+
+[Field: KSItem]
+Set As : $StockItemName
+XMLTag : "StockItemName"
+
+[Field: KSQty]
+Set As : $ActualQty
+XMLTag : "ActualQty"
+
+[Field: KSBilledQty]
+Set As : $BilledQty
+XMLTag : "BilledQty"
+
+[Field: KSRate]
+Set As : $Rate
+XMLTag : "Rate"
+
+[Field: KSAmount]
+Set As : $Amount
+XMLTag : "Amount"
+
+[Collection: KeshavInventoryCollection]
+Type : Voucher
+Walk : AllInventoryEntries
+
+
+[Report: KeshavVoucherReport]
+Form : KeshavVoucherForm
+
+[Form: KeshavVoucherForm]
+Part : KeshavVoucherPart
+
+[Part: KeshavVoucherPart]
+Line : KeshavVoucherLine
+Repeat : KeshavVoucherLine : KeshavVoucherCollection
+Scroll : Vertical
+
+[Line: KeshavVoucherLine]
+Fields : KSDate, KSVoucherNo
+
+[Field: KSDate]
+Set As : $Date
+XMLTag : "Date"
+
+[Field: KSVoucherNo]
+Set As : $VoucherNumber
+XMLTag : "VoucherNumber"
+
+[Collection: KeshavVoucherCollection]
+Type : Voucher

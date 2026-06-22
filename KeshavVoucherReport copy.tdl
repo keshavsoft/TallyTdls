@@ -1,0 +1,33 @@
+
+[Report: KeshavVoucherReport]
+Form : KeshavVoucherForm
+
+[Form: KeshavVoucherForm]
+Part : KeshavVoucherPart
+
+[Part: KeshavVoucherPart]
+Line : KeshavVoucherLine
+Repeat : KeshavVoucherLine : KeshavVoucherCollection
+Scroll : Vertical
+
+[Line: KeshavVoucherLine]
+Fields : KSDate, KSVoucherNo, KSGuid, KSallinventoryentries
+
+[Field: KSDate]
+Set As : $Date
+XMLTag : "Date"
+
+[Field: KSVoucherNo]
+Set As : $VoucherNumber
+XMLTag : "VoucherNumber"
+
+[Field: KSGuid]
+Set As : $guid
+XMLTag : "guid"
+
+[Field: KSallinventoryentries]
+Set As : $allinventoryentries
+XMLTag : "allinventoryentries"
+
+[Collection: KeshavVoucherCollection]
+Type : Voucher
